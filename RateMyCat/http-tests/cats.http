@@ -1,0 +1,28 @@
+### Get all cats
+GET http://localhost:5195/api/Cats
+
+### Get a cat by ID
+GET http://localhost:5195/api/cats/1
+Accept: application/json
+
+### Create a new cat
+POST http://localhost:5195/api/cats
+Content-Type: application/json
+
+{
+  "name": "Whiskers",
+  "color": "Orange"
+}
+
+### Update a cat
+PUT http://localhost:5195/api/cats/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Como",
+  "color": "Red"
+}
+
+### Delete a cat
+DELETE http://localhost:5195/api/cats/2

@@ -30,7 +30,7 @@ namespace RateMyCat.Controllers
 
         // GET: api/Cats/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cat>> GetCat(long id)
+        public async Task<ActionResult<Cat>> GetCat(int id)
         {
             var cat = await _context.Cats.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace RateMyCat.Controllers
         // PUT: api/Cats/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCat(long id, Cat cat)
+        public async Task<IActionResult> PutCat(int id, Cat cat)
         {
             if (id != cat.Id)
             {
@@ -81,12 +81,12 @@ namespace RateMyCat.Controllers
             _context.Cats.Add(cat);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCats), new { id = cat.Id }, cat);
+            return CreatedAtAction("GetCat", new { id = cat.Id }, cat);
         }
 
         // DELETE: api/Cats/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCat(long id)
+        public async Task<IActionResult> DeleteCat(int id)
         {
             var cat = await _context.Cats.FindAsync(id);
             if (cat == null)
@@ -100,7 +100,7 @@ namespace RateMyCat.Controllers
             return NoContent();
         }
 
-        private bool CatExists(long id)
+        private bool CatExists(int id)
         {
             return _context.Cats.Any(e => e.Id == id);
         }

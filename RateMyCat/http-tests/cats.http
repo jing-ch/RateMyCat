@@ -5,6 +5,15 @@ GET http://localhost:5195/api/Cats
 GET http://localhost:5195/api/cats/1
 Accept: application/json
 
+### Create a Como
+POST http://localhost:5195/api/cats
+Content-Type: application/json
+
+{
+  "name": "Como",
+  "color": "Black"
+}
+
 ### Create a new cat
 POST http://localhost:5195/api/cats
 Content-Type: application/json

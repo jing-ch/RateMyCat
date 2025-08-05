@@ -1,3 +1,5 @@
+using RateMyCat.Models;
+
 namespace RateMyCat.DTO;
 
 public class CatGetDto
@@ -12,7 +14,6 @@ public class CatGetDto
 
 public class CatCreateDto
 {
-    public int Id { get; set; }
     public string Name { get; set; } = null!;
     public string? Color { get; set; }
     
@@ -26,3 +27,4 @@ public class CatUpdateDto
     public string Name { get; set; } = null!;
     public string? Color { get; set; }
 }
+

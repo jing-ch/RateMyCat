@@ -17,7 +17,6 @@ public class CatRatingGetDto
 
 public class CatRatingCreateDto
 {
-    public int Id { get; set; }
     public int? CatId { get; set; }
     public int? CatPartId { get; set; }
     public int? UserId { get; set; }

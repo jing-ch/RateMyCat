@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RateMyCat.Data;
 using RateMyCat.Models;
+using RateMyCat.DTO;
 
 namespace RateMyCat.Controllers
 {
@@ -30,7 +31,7 @@ namespace RateMyCat.Controllers
 
         // GET: api/Cats/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cat>> GetCat(int id)
+        public async Task<ActionResult<CatGetDto>> GetCat(int id)
         {
             var cat = await _context.Cats.FindAsync(id);
 
@@ -39,7 +40,7 @@ namespace RateMyCat.Controllers
                 return NotFound();
             }
 
-            return cat;
+            return cat.ToGetDto();
         }
 
         // PUT: api/Cats/5
@@ -76,12 +77,14 @@ namespace RateMyCat.Controllers
         // POST: api/Cats
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Cat>> PostCat(Cat cat)
+        public async Task<ActionResult<CatCreateDto>> PostCat(CatCreateDto catCreateDto)
         {
+            Cat cat = new Cat();
+            cat = cat.FromCreateDto(catCreateDto);
             _context.Cats.Add(cat);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCat", new { id = cat.Id }, cat);
+            return CreatedAtAction(nameof(GetCat), new { id = cat.Id }, cat);
         }
 
         // DELETE: api/Cats/5

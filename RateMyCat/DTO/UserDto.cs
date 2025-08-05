@@ -8,7 +8,6 @@ public class UserGetDto
 
 public class UserCreateDto
 {
-    public int Id { get; set; }
     public string UserName { get; set; } = null!;
 }
 
